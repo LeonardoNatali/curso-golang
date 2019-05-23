@@ -6,17 +6,12 @@ import (
 )
 
 func main() {
-
-	var u username
-	u = "Leonardo Natali"
-	fmt.Println(u)
-
 	usuario := user{
-		birthdate: time.Now().AddDate(-10, 2, 2),
-		name:      "Leonardo Natali",
-		live:      true,
+		birthdate: time.Now(),
+		name     :      "Leonardo Natali",
+		live     :      true,
 	}
-	fmt.Println(usuario.getAge())
+	usuario.getAge()
 }
 
 type user struct {
@@ -25,8 +20,6 @@ type user struct {
 	live      bool
 }
 
-type username string
-
-func (u *user) getAge() float64 {
-	return time.Now().Sub(u.birthdate).time
+func (u *user) getAge() {
+	fmt.Println(u.birthdate)
 }
