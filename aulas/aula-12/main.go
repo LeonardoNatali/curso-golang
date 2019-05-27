@@ -10,30 +10,35 @@ type User struct {
 	online bool
 }
 
+func(u User)Show() string{
+	return fmt.Sprintf("Hello, my name is %s\n", u.name)
+}
+
+func(u Admin)Show() string{
+	return fmt.Sprintf("Hello, my name is %s And i am an Adm\n", u.name)
+}
+
 type Admin struct {
 	User
 	manager bool
 }
 
-type NormalUser User
-
-func (u *NormalUser) ShowMessage(){
-	u.name = "[NORMAL USER] " + u.name 
-	fmt.Printf("Hello, my normal name is %s\n", u.name)
+func ShowUserInfo(u UsersInterface){
+	fmt.Println(u.Show())
 }
 
-func (u *User) ShowUserInfo(){
-	fmt.Printf("Hello, my name is %s\n", u.name)
+type UsersInterface interface {
+	Show() string
 }
 
 func main(){
-	var adm Admin
-	adm.name     = "Leonardo Natali"
-	adm.online   = true
-	adm.username = "leonardo"
-	adm.manager  = true
-	adm.ShowUserInfo()
-	var normal NormalUser
-	normal.name = "Leonardo Natali"
-	normal.ShowMessage()
+	adm := Admin{
+		User{
+			"Leonardo Natali",
+			"leonardo",
+			true,
+		},
+		true,
+	}
+	ShowUserInfo(adm)
 }
