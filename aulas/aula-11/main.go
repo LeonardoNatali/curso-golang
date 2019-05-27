@@ -24,13 +24,22 @@ func(u *User) Logout(){
 	fmt.Printf("\nO usuário %s saiu do sistema\n", u.name)
 }
 
+type NormalUser User
+
+func (u *NormalUser) ShowMessage(){
+	u.name = "[NORMAL USER] " + u.name 
+	fmt.Printf("Hello, my normal name is %s\n", u.name)
+}
+
 func main(){
 	var adm  Admin
 	adm.ranking = 2
 	adm.name = "Leonardo"
 	adm.Login()
 	adm.Logout()
-
 	fmt.Println(adm.ranking)
+
+	var normal NormalUser
+	normal.name = "Leonardo Natali"
 }
 
